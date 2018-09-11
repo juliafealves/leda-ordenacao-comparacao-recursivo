@@ -10,9 +10,49 @@ import sorting.AbstractSorting;
  */
 public class MergeSort<T extends Comparable<T>> extends AbstractSorting<T> {
 
-	@Override
-	public void sort(T[] array, int leftIndex, int rightIndex) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
-	}
+    @Override
+    public void sort(T[] array, int leftIndex, int rightIndex) {
+        if (leftIndex < rightIndex && leftIndex >= 0 && rightIndex < array.length) {
+            int middle = ((leftIndex + rightIndex) / 2);
+            this.sort(array, leftIndex, middle);
+            this.sort(array, middle + 1, rightIndex);
+            this.merge(array, leftIndex, middle, rightIndex);
+        }
+    }
+
+    private void merge(T[] array, int leftIndex, int middle, int rightIndex) {
+        T[] copy = (T[]) new Comparable[array.length];
+
+        for (int i = leftIndex; i <= rightIndex; i++) {
+            copy[i] = array[i];
+        }
+
+        int i = leftIndex;
+        int l = leftIndex;
+        int m = middle + 1;
+
+        while (l <= middle && m <= rightIndex) {
+            if (copy[l].compareTo(copy[m]) < 0) {
+                array[i] = copy[l];
+                l++;
+            } else {
+                array[i] = copy[m];
+                m++;
+            }
+
+            i++;
+        }
+
+        while (l <= middle) {
+            array[i] = copy[l];
+            l++;
+            i++;
+        }
+
+        while (m <= rightIndex) {
+            array[i] = copy[m];
+            m++;
+            i++;
+        }
+    }
 }
