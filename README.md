@@ -1,4 +1,6 @@
-# Algoritmo de Ordenação "Dividir e Conquistar"
+# Algoritmo de Ordenação "Dividir para Conquistar"
+
+*Algoritmos implementados em Java 8*
 
 ## Merge Sort
 
